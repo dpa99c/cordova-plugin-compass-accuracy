@@ -5,7 +5,7 @@
     version="1.0.0">
 
     <name>Compass Accuracy</name>
-    <description>Cordova/Phonegap plugin for Android and iOS to monitor compass accuracy and show a native dialog if accuracy is low.</description>
+    <description>A Cordova plugin for Android and iOS to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.</description>
     <author>Dave Alden</author>
     <engines>
         <engine name="cordova" version=">=3.0.0" />
