@@ -9,5 +9,7 @@
 
 - (void) startMonitoring:(CDVInvokedUrlCommand*)command;
 - (void) stopMonitoring:(CDVInvokedUrlCommand*)command;
+- (void) getCurrentAccuracy:(CDVInvokedUrlCommand*)command;
+- (void) simulateAccuracyChange:(CDVInvokedUrlCommand*)command;
 
 @end

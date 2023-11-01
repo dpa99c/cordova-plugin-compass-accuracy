@@ -15,10 +15,12 @@ CompassAccuracy.prototype.ACCURACY = {
 	HIGH: "high",
 	MEDIUM: "medium",
 	LOW: "low",
+	UNRELIABLE: "unreliable",
 	UNKNOWN: "unknown"
 };
 
 var NATIVE_SENSOR_STATUS_ACCURACY = {
+	UNRELIABLE: 0,
 	LOW: 1,
 	MEDIUM: 2,
 	HIGH: 3
@@ -26,6 +28,8 @@ var NATIVE_SENSOR_STATUS_ACCURACY = {
 
 function jsAccuracyToNativeAccuracy(jsAccuracy){
 	switch(jsAccuracy){
+		case CompassAccuracy.prototype.ACCURACY.UNRELIABLE:
+			return NATIVE_SENSOR_STATUS_ACCURACY.UNRELIABLE;
 		case CompassAccuracy.prototype.ACCURACY.LOW:
 			return NATIVE_SENSOR_STATUS_ACCURACY.LOW;
 		case CompassAccuracy.prototype.ACCURACY.MEDIUM:
@@ -33,12 +37,14 @@ function jsAccuracyToNativeAccuracy(jsAccuracy){
 		case CompassAccuracy.prototype.ACCURACY.HIGH:
 			return NATIVE_SENSOR_STATUS_ACCURACY.HIGH;
 		default:
-			return NATIVE_SENSOR_STATUS_ACCURACY.LOW;
+			return NATIVE_SENSOR_STATUS_ACCURACY.UNKNOWN;
 	}
 }
 
 function nativeAccuracyToJsAccuracy(nativeAccuracy){
 	switch(nativeAccuracy){
+		case NATIVE_SENSOR_STATUS_ACCURACY.UNRELIABLE:
+			return CompassAccuracy.prototype.ACCURACY.UNRELIABLE;
 		case NATIVE_SENSOR_STATUS_ACCURACY.LOW:
 			return CompassAccuracy.prototype.ACCURACY.LOW;
 		case NATIVE_SENSOR_STATUS_ACCURACY.MEDIUM:

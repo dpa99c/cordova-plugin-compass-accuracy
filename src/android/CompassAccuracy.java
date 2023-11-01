@@ -204,6 +204,9 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
                         isInaccurate = true;
                     }
                     break;
+                case SensorManager.SENSOR_STATUS_ACCURACY_UNRELIABLE
+                    isInaccurate = true;
+                    break;
             }
 
             if(currentWatchContext != null){

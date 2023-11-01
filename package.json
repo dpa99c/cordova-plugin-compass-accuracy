@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "cordova-plugin-compass-accuracy",
-  "cordova_name": "Request Location Accuracy",
+  "cordova_name": "Compass Accuracy",
   "description": "A Cordova plugin for Android and iOS to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.",
   "author": "Dave Alden",
   "license": "MIT",
@@ -22,8 +22,6 @@
     "cordova",
     "cordova-android",
     "cordova-ios",
-    "phonegap",
-    "diagnostic",
     "compass",
     "accuracy"
   ]
