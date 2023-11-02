@@ -7,7 +7,6 @@ var CompassAccuracy = function(){};
 
 CompassAccuracy.prototype.RESULT_TYPE = {
 	STARTED: "started",
-	STOPPED: "stopped",
 	ACCURACY_CHANGED: "accuracy_changed"
 };
 

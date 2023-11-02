@@ -5,7 +5,7 @@
     version="1.0.0">
 
     <name>Compass Accuracy</name>
-    <description>A Cordova plugin for Android and iOS to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.</description>
+    <description>A Cordova plugin for Android to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.</description>
     <author>Dave Alden</author>
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -13,11 +13,11 @@
     
     <repo>https://github.com/dpa99c/cordova-plugin-compass-accuracy.git</repo>
     <issue>https://github.com/dpa99c/cordova-plugin-compass-accuracy/issues</issue>
-    <keywords>ecosystem:cordova,cordova,phonegap,android,compass,accuracy</keywords>
+    <keywords>ecosystem:cordova,cordova,android,compass,accuracy</keywords>
     <license>MIT</license>
 
     <js-module src="www/CompassAccuracy.js" name="CompassAccuracy">
-        <clobbers target="cordova.plugins.compassAccuracy" />
+        <clobbers target="CompassAccuracy" />
     </js-module>
 
     <platform name="android">
@@ -29,20 +29,5 @@
         </config-file>
         <source-file src="src/android/CompassAccuracy.java" target-dir="src/cordova/plugin" />
         <resource-file src="src/android/calibration.png" target="app/src/main/res/drawable/calibration.png" />
-    </platform>
-
-    <platform name="ios">
-
-        <config-file target="config.xml" parent="/*">
-            <feature name="CompassAccuracy">
-                <param name="ios-package" value="CompassAccuracy"/>
-                <param name="onload" value="true" />
-            </feature>
-        </config-file>
-
-        <header-file src="src/ios/CompassAccuracy.h" />
-        <source-file src="src/ios/CompassAccuracy.m" />
-
-        <framework src="CoreLocation.framework" />
     </platform>
 </plugin>
