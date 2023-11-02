@@ -7,8 +7,18 @@ Cordova Request Location Accuracy Plugin [![Latest Stable Version](https://img.s
 
 - [Overview](#overview)
 - [Installation](#installation)
-  - [Using the Cordova CLI](#using-the-cordovaphonegap-cli)
+  - [Using the Cordova CLI](#using-the-cordova-cli)
   - [Capacitor](#capacitor)
+- [Referencing the plugin](#referencing-the-plugin)
+- [API](#api)
+  - [Constants](#constants)
+    - [ACCURACY](#accuracy)
+    - [RESULT_TYPE](#result_type)
+  - [Methods](#methods)
+    - [startMonitoring(onSuccess: ({type:string, currentAccuracy:number, requiredAccuracy:number}) => void, onError: (error:string) => void, requiredAccuracy?:number)](#startmonitoringonsuccess-typestring-currentaccuracynumber-requiredaccuracynumber--void-onerror-errorstring--void-requiredaccuracynumber)
+    - [stopMonitoring(onSuccess: () => void, onError: (error:string) => void)](#stopmonitoringonsuccess---void-onerror-errorstring--void)
+    - [getCurrentAccuracy(onSuccess: (accuracy:number) => void, onError: (error:string) => void)](#getcurrentaccuracyonsuccess-accuracynumber--void-onerror-errorstring--void)
+    - [simulateAccuracyChange(accuracy:number, onSuccess: () => void, onError: (error:string) => void)](#simulateaccuracychangeaccuracynumber-onsuccess---void-onerror-errorstring--void)
 - [Usage](#usage)
 - [Example project](#example-project)
 - [License](#license)
@@ -123,11 +133,12 @@ This method is intended for use in testing only.
 
 ```javascript
 function onDeviceReady(){
+    const requiredAccuracy = CompassAccuracy.ACCURACY.HIGH;
     CompassAccuracy.startMonitoring(function(result){
-        console.log("Compass accuracy "+(result.type === CompassAccuracy.RESULT_TYPE.STARTED ? 'started as' : 'changed to')+": "+result.currentAccuracy+" (required="+result.requiredAccuracy+")");
+        console.log(`Compass accuracy ${result.type === CompassAccuracy.RESULT_TYPE.STARTED ? 'started as' : 'changed to'}: ${result.currentAccuracy} (required=${result.requiredAccuracy})`)
     }, function(error){
-        console.log("Failed to start monitoring compass accuracy: "+error);
-    });
+        console.log(`Failed to start monitoring compass accuracy: ${error}`)
+    }, requiredAccuracy);
 }
 document.addEventListener("deviceready", onDeviceReady, false);
 ```
