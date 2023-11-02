@@ -26,6 +26,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -95,7 +96,11 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
         this.cordova = cordova;
         Log.d(TAG, "Initializing CompassAccuracy plugin");
 
-        mSensorManager = cordova.getActivity().getSystemService(SensorManager.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mSensorManager = cordova.getActivity().getSystemService(SensorManager.class);
+        }else{
+            mSensorManager = (SensorManager) cordova.getActivity().getSystemService(Context.SENSOR_SERVICE);
+        }
         mSensorMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
         mSensorManager.registerListener(this, mSensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
@@ -204,7 +209,7 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
                         isInaccurate = true;
                     }
                     break;
-                case SensorManager.SENSOR_STATUS_ACCURACY_UNRELIABLE
+                case SensorManager.SENSOR_STATUS_UNRELIABLE:
                     isInaccurate = true;
                     break;
             }
