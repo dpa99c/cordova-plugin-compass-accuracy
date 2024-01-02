@@ -219,6 +219,7 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
                 resultObj.put("type", "accuracy_changed");
                 resultObj.put("requiredAccuracy", requiredAccuracy);
                 resultObj.put("currentAccuracy", currentAccuracy);
+                resultObj.put("previousAccuracy", previousAccuracy);
                 PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, resultObj);
                 pluginResult.setKeepCallback(true);
                 currentWatchContext.sendPluginResult(pluginResult);
@@ -436,8 +437,8 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
     public void onAccuracyChanged(Sensor sensor, int currentAccuracy) {
         if(previousAccuracy == currentAccuracy) return;
 
+        Log.i(TAG, "Magnetometer accuracy changed from " + getAccuracyName(previousAccuracy) + " to " + getAccuracyName(currentAccuracy));
         previousAccuracy = currentAccuracy;
-        Log.i(TAG, "Magnetometer accuracy changed to " + getAccuracyName(currentAccuracy));
 
         evaluateChangedAccuracy(currentAccuracy);
     }
