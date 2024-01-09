@@ -75,6 +75,8 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
     protected SpannableString accuracyValue = null;
     protected boolean hasShownDialog = false;
 
+    protected boolean isInaccurate = false;
+
     private SensorManager mSensorManager;
     private Sensor mSensorMagneticField;
 
@@ -191,7 +193,7 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
     }
 
     protected void evaluateChangedAccuracy(int currentAccuracy){
-        boolean isInaccurate = false;
+        isInaccurate = false;
         try{
             switch(requiredAccuracy){
                 case SensorManager.SENSOR_STATUS_ACCURACY_HIGH:
@@ -229,13 +231,24 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
                         showDialog(currentAccuracy);
                         hasShownDialog = true; // only show dialog once
                     }
+                    if(dialog != null){
+                        setAccuracyText(currentAccuracy);
+                    }
+                }else{
+                    hideDialog();
                 }
-                if(dialog != null){
-                    setAccuracyText(currentAccuracy);
-                }
+
             }
         }catch (Exception e) {
             handleError(e.getMessage(), currentWatchContext);
+        }
+    }
+
+    protected void hideDialog(){
+        if(dialog != null){
+            dialog.dismiss();
+            dialog = null;
+            accuracyTextView = null;
         }
     }
 
@@ -249,6 +262,10 @@ public class CompassAccuracy extends CordovaPlugin implements SensorEventListene
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if(!isInaccurate){
+                    hideDialog();
+                    return;
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
                 // Create a parent RelativeLayout for the dialog
