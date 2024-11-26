@@ -28,6 +28,6 @@
             </feature>
         </config-file>
         <source-file src="src/android/CompassAccuracy.java" target-dir="src/cordova/plugin" />
-        <resource-file src="src/android/calibration.png" target="app/src/main/res/drawable/calibration.png" />
+        <resource-file src="src/android/calibration.png" target="res/drawable/calibration.png" />
     </platform>
 </plugin>
