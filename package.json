@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "cordova-plugin-compass-accuracy",
   "cordova_name": "Request Location Accuracy",
   "description": "A Cordova plugin for Android to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.",

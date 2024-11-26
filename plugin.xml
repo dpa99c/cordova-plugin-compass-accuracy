@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-compass-accuracy"
-    version="1.0.0">
+    version="1.0.1">
 
     <name>Compass Accuracy</name>
     <description>A Cordova plugin for Android to monitor the accuracy of the device compass and if needed, request the user to calibrate it via a native dialog.</description>
